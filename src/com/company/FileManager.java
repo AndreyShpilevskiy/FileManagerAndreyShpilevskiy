@@ -1,7 +1,6 @@
 package com.company;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class FileManager {
 
@@ -41,15 +40,49 @@ public class FileManager {
         File file = new File(path+name);
         File newFile = new File(path+newName);
         boolean success = file.renameTo(newFile);
-        if(!success){
+        if(!success) {
             System.out.println("File doesn't rename");
+        }
+
+    }
+    public static void searchWord (String[] args) throws FileNotFoundException, IOException {
+        String searchWord = "text"; // слово заменить на нужное
+        FileInputStream fis = new FileInputStream(new File("E:/supertext.txt")); // путь заменить на нужный
+        byte[] content = new byte[fis.available()];
+        fis.read(content);
+        fis.close();
+        String[] lines = new String(content, "Cp1251").split("\n"); // кодировку указать нужную
+        int i = 1;
+        for (String line : lines) {
+            String[] words = line.split(" ");
+            int j = 1;
+            for (String word : words) {
+                if (word.equalsIgnoreCase(searchWord)) {
+                    System.out.println("Найдено в " + i + "-й строке, " + j + "-е слово");
+                }
+                j++;
+            }
+            i++;
         }
     }
 
-    public static void findWord(String path, String name, String word) {
-        File file = new File(path+name);
-    }
-
-    public static void replaceWord(String path, String name, String word) {
+    public static void replaceWord(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new FileReader("e:\\supertext.txt")); // путь заменить на нужный
+        String line = "";
+        String FileContent = "";
+        String NL = System.getProperty("line.separator");
+        while ((line = br.readLine()) != null) {
+            FileContent = FileContent + line + NL;
+        }
+        br.close();
+        FileContent = FileContent.replaceAll("text", "noText"); // указать необходимые слова
+        System.out.println(FileContent);
+        BufferedWriter bw = new BufferedWriter(new FileWriter("e:\\supertext.txt")); // путь заменить на нужный
+        bw.write(FileContent);
+        bw.close();
     }
 }
+
+
+
+
