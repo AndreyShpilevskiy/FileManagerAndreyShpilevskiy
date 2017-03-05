@@ -1,6 +1,7 @@
 package com.company;
 
 import java.io.*;
+import java.util.Scanner;
 
 public class FileManager {
 
@@ -46,7 +47,8 @@ public class FileManager {
 
     }
     public static void searchWord (String[] args) throws FileNotFoundException, IOException {
-        String searchWord = "text"; // слово заменить на нужное
+        Scanner scanner = new Scanner(System.in);
+        String searchWord = scanner.next(); // слово заменить на нужное
         FileInputStream fis = new FileInputStream(new File("E:/supertext.txt")); // путь заменить на нужный
         byte[] content = new byte[fis.available()];
         fis.read(content);
