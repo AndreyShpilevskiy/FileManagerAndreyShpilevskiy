@@ -15,7 +15,7 @@ public class FileManager {
                 System.out.println("File already present at the specified location");
             }
         } catch (IOException error) {
-            System.out.println("Error");
+            System.out.println("Error ");
             error.printStackTrace();
         }
     }
