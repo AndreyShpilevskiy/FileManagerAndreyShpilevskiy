@@ -32,7 +32,7 @@ public class FileManager {
                     writeToFile(file, content);
                 } catch (IOException e) {
                     e.printStackTrace();
-                                    }
+                }
             } else if ("n".equals(userInput)) {
                 System.out.println("Ваш ответ 'нет', файл не будет создан. Пока!");
             }
