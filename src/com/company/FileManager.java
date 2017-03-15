@@ -5,19 +5,56 @@ import java.util.Scanner;
 
 public class FileManager {
 
-    public static void createFile(String path, String name) throws IOException {
+    private Scanner scanner;
+    private FileWriter fw;
+    private BufferedWriter bw;
+
+    public FileManager() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public String createFile(String path, String fileName, String content) {
+        File file = new File(path+fileName);
+
+        boolean exists = exists(file);
+
+        if (exists) {
+            System.out.println("Файл " + fileName + " существует, начинаю запись данных...");
+            writeToFile(file, content);
+        } else {
+            System.out.println("Файл " + fileName + " не существует...Создать его? (y/n)");
+            String userInput = scanner.nextLine();
+            if ("y".equals(userInput)) { //добавить возможность принимать ответ без учета регистра
+                try {
+                    file.createNewFile();
+                    writeToFile(file, content);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else if ("n".equals(userInput)) {
+                System.out.println("Ваш ответ 'нет', файл не будет создан. Пока!");
+            }
+        }
+        return "Done!";
+    }
+
+    private boolean exists(File file) {
+        if (file.exists()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    private void writeToFile(File file, String content) {
         try {
-            File file = new File(path+name);
-            boolean fvar = file.createNewFile();
-            if (fvar){
-                System.out.println("File has been created successfully");
-            }
-            else{
-                System.out.println("File already present at the specified location");
-            }
-        } catch (IOException error) {
-            System.out.println("Error");
-            error.printStackTrace();
+            fw = new FileWriter(file.getAbsoluteFile());
+            bw = new BufferedWriter(fw);
+            bw.write(content);
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

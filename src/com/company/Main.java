@@ -25,8 +25,10 @@ public class Main {
                 System.out.println("Please enter path (For example: 'E:/')");
                 String path = scanner.next();
                 System.out.println("Please enter filename (For example: 'test.txt')");
-                String name = scanner.next();
-                fileManager.createFile(path, name);
+                String fileName = scanner.next();
+                System.out.println("Please enter text of file ('Hello')");
+                String content = scanner.next();
+                fileManager.createFile(path, fileName, content);
             } else if (option == 2) {
                 System.out.println("Deleting a file.");
                 System.out.println("Please enter path (For example: 'E:/')");
