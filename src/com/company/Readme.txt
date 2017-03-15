@@ -1,4 +1,4 @@
-1 Запустить Main.java.
+1 Запустить Main.java или FileManager.jar
 
 2 Ввести любое число от 0 до 5.
 
