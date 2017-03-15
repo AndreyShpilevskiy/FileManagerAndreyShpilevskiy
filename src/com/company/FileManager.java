@@ -26,7 +26,7 @@ public class FileManager {
             String userInput = scanner.nextLine();
             if ("y".equals(userInput)) {
                 System.out.println("Файл создан. Получилось!:)");
-                //добавить возможность принимать ответ без учета регистра
+                //добавить возможность принимать ответ без учета регистра, доделать
                 try {
                     file.createNewFile();
                     writeToFile(file, content);
