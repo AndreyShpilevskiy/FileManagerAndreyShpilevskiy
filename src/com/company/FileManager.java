@@ -24,13 +24,15 @@ public class FileManager {
         } else {
             System.out.println("Файл " + fileName + " не существует...Создать его? (y/n)");
             String userInput = scanner.nextLine();
-            if ("y".equals(userInput)) { //добавить возможность принимать ответ без учета регистра
+            if ("y".equals(userInput)) {
+                System.out.println("Файл создан. Получилось!:)");
+                //добавить возможность принимать ответ без учета регистра
                 try {
                     file.createNewFile();
                     writeToFile(file, content);
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                                    }
             } else if ("n".equals(userInput)) {
                 System.out.println("Ваш ответ 'нет', файл не будет создан. Пока!");
             }
